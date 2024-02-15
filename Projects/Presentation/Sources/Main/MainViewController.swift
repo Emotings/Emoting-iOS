@@ -1,5 +1,3 @@
 import UIKit
 
-public class MainViewController: BaseReactorViewController<MainReactor> {
-    
-}
+public class MainViewController: BaseReactorViewController<MainReactor> {}

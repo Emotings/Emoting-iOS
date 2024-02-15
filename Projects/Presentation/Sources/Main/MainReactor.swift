@@ -9,9 +9,7 @@ public final class MainReactor: BaseReactor, Stepper {
     public let steps = PublishRelay<Step>()
     public let initialState = State()
     private let disposeBag = DisposeBag()
-    public init() {
-        
-    }
+    public init() {}
 
     public enum Action { }
 

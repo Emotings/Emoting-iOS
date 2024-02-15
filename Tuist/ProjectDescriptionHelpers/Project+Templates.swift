@@ -33,7 +33,7 @@ public extension Project {
                 infoPlist: .extendingDefault(with: additionalPlistRows),
                 sources: sources,
                 resources: resources,
-                scripts: [],
+                scripts: [.swiftLint],
                 dependencies: dependencies
             )
         ]
