@@ -17,6 +17,7 @@ let project = Project.makeModule(
         .SPM.kingfisher,
         .SPM.KeychainSwift,
         .SPM.ReactorKit,
-        .SPM.RxGesture
+        .SPM.RxGesture,
+        .SPM.TextFieldEffets
     ], sources: []
 )

@@ -12,12 +12,9 @@ public final class AppFlow: Flow {
         return self.window
     }
 
-    private let rootViewController: MainViewController
-
     public init(window: UIWindow, container: Container) {
         self.window = window
         self.container = container
-        self.rootViewController = MainViewController(MainReactor())
     }
 
     public func navigate(to step: Step) -> FlowContributors {
@@ -26,18 +23,60 @@ public final class AppFlow: Flow {
         switch step {
         case .onboardingIsRequired:
             return navigationToOnboarding()
+        case .oauthLoginIsRequired:
+            return navigationToOauthLogin()
+        case .tabIsRequired:
+            return navigationToTab()
         }
     }
 }
 
 private extension AppFlow {
     func navigationToOnboarding() -> FlowContributors {
-        self.window.rootViewController = rootViewController
-        return .one(
-            flowContributor: .contribute(
-                withNextPresentable: rootViewController,
-                withNextStepper: rootViewController.reactor
-            )
-        )
+        let onboardingFlow = OnboardingFlow(container: container)
+
+        Flows.use(onboardingFlow, when: .created) { (root) in
+            self.window.rootViewController = root
+        }
+
+        return .one(flowContributor: .contribute(
+            withNextPresentable: onboardingFlow,
+            withNextStepper: OneStepper(withSingleStep: OnboardingStep.onboardingIsRequired)
+        ))
+    }
+
+    func navigationToOauthLogin() -> FlowContributors {
+        let oauthLoginFlow = OauthLoginFlow(container: container)
+
+        Flows.use(oauthLoginFlow, when: .created) { (root) in
+            UIView.transition(
+                with: self.window,
+                duration: 0.5,
+                options: .transitionCrossDissolve
+            ) {
+                self.window.rootViewController = root
+            }
+        }
+
+        return .one(flowContributor: .contribute(
+            withNextPresentable: oauthLoginFlow,
+            withNextStepper: OneStepper(withSingleStep: OauthLoginStep.oauthLoginIsRequired)
+        ))
+    }
+
+    func navigationToTab() -> FlowContributors {
+        let mainViewController = container.resolve(MainViewController.self)!
+        UIView.transition(
+            with: self.window,
+            duration: 0.5,
+            options: .transitionCrossDissolve
+        ) {
+            self.window.rootViewController = mainViewController
+        }
+
+        return .one(flowContributor: .contribute(
+            withNextPresentable: mainViewController,
+            withNextStepper: mainViewController.reactor
+        ))
     }
 }

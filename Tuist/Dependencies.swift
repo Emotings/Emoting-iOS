@@ -43,6 +43,10 @@ let dependencies = Dependencies(
             .remote(
                 url: "https://github.com/RxSwiftCommunity/RxGesture",
                 requirement: .upToNextMajor(from: "4.0.0")
+            ),
+            .remote(
+                url: "https://github.com/raulriera/TextFieldEffects",
+                requirement: .upToNextMajor(from: "1.7.0")
             )
         ]
     ),

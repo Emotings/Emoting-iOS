@@ -1,4 +1,5 @@
 import UIKit
+import DesignSystem
 
 public class BaseNavigationController: UINavigationController {
 
@@ -17,7 +18,7 @@ public class BaseNavigationController: UINavigationController {
 
     private var backButtonImage: UIImage? {
         return UIImage(systemName: "chevron.left")!
-            .withAlignmentRectInsets(UIEdgeInsets(top: 0.0, left: -12.0, bottom: 0.0, right: 0.0))
+            .withAlignmentRectInsets(UIEdgeInsets(top: 16.0, left: -16.0, bottom: 16.0, right: 0.0))
     }
 
     private var backButtonAppearance: UIBarButtonItemAppearance {
@@ -29,7 +30,7 @@ public class BaseNavigationController: UINavigationController {
     private func setNavigationBarAppearance() {
         let scrollEdgeAppearance = UINavigationBarAppearance()
         let standardAppearance = UINavigationBarAppearance()
-//        navigationBar.tintColor = .GrayScale.gray60
+        navigationBar.tintColor = .GrayScale.gray500
         scrollEdgeAppearance.setBackIndicatorImage(
             backButtonImage,
             transitionMaskImage: backButtonImage
@@ -38,12 +39,15 @@ public class BaseNavigationController: UINavigationController {
             backButtonImage,
             transitionMaskImage: backButtonImage
         )
-//        scrollEdgeAppearance.backgroundColor = .GrayScale.gray10
+        scrollEdgeAppearance.backgroundColor = .white
 
         scrollEdgeAppearance.configureWithTransparentBackground()
         standardAppearance.configureWithDefaultBackground()
         scrollEdgeAppearance.backButtonAppearance = backButtonAppearance
         standardAppearance.backButtonAppearance = backButtonAppearance
+        scrollEdgeAppearance.titleTextAttributes = [
+            .font: UIFont.pretendardFont(.regular, size: 16)
+        ]
 //        scrollEdgeAppearance.largeTitleTextAttributes = [
 //            .font: UIFont.jobisFont(.pageTitle),
 //            .foregroundColor: UIColor.GrayScale.gray90

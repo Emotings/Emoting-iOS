@@ -19,7 +19,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
 
         assembler = Assembler([
-            KeychainAssembly()
+            KeychainAssembly(),
+            PresentationAssembly()
         ], container: AppDelegate.container)
         return true
     }
