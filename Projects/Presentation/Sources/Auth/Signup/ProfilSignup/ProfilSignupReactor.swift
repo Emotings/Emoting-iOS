@@ -34,7 +34,7 @@ extension ProfilSignupReactor {
         var newState = state
         switch mutation {
         case .signupSuccess:
-            steps.accept(ProFilSignupStep.oauthLoginIsRequired)
+            steps.accept(ProfilSignupStep.oauthLoginIsRequired)
         }
         return newState
     }

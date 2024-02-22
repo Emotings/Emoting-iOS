@@ -19,10 +19,10 @@ public final class ProFilSignupFlow: Flow {
     }
 
     public func navigate(to step: Step) -> FlowContributors {
-        guard let step = step as? ProFilSignupStep else { return .none }
+        guard let step = step as? ProfilSignupStep else { return .none }
 
         switch step {
-        case .proFilSignupIsRequired:
+        case .profilSignupIsRequired:
             return navigationToProfilSignup()
 
         case .oauthLoginIsRequired:
