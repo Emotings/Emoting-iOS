@@ -6,6 +6,7 @@ import Domain
 public final class PresentationAssembly: Assembly {
     public init() {}
 
+    // swiftlint: disable function_body_length
     public func assemble(container: Container) {
         container.register(OnboardingReactor.self) { _ in
             OnboardingReactor()
@@ -90,5 +91,6 @@ public final class PresentationAssembly: Assembly {
         container.register(MyPageViewController.self) { resolver in
             MyPageViewController(resolver.resolve(MyPageReactor.self)!)
         }
+        // swiftlint: enable function_body_length
     }
 }
