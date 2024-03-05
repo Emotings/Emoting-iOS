@@ -65,18 +65,17 @@ private extension AppFlow {
     }
 
     func navigationToTab() -> FlowContributors {
-        let mainViewController = container.resolve(MainViewController.self)!
-        UIView.transition(
-            with: self.window,
-            duration: 0.5,
-            options: .transitionCrossDissolve
-        ) {
-            self.window.rootViewController = mainViewController
+        let tabsFlow = TabsFlow(container: container)
+        Flows.use(
+            tabsFlow,
+            when: .created
+        ) { [weak self] root in
+            self?.window.rootViewController = root
         }
-
         return .one(flowContributor: .contribute(
-            withNextPresentable: mainViewController,
-            withNextStepper: mainViewController.reactor
-        ))
+            withNextPresentable: tabsFlow,
+            withNextStepper: OneStepper(withSingleStep: AppStep.tabIsRequired)
+            )
+        )
     }
 }
