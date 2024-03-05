@@ -1,5 +1,3 @@
 import UIKit
 
-public class MyPageViewController: BaseReactorViewController<MyPageReactor> {
-
-}
+public class MyPageViewController: BaseReactorViewController<MyPageReactor> { }
