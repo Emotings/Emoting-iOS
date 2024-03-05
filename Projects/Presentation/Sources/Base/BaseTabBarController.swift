@@ -6,18 +6,16 @@ import DesignSystem
 public class BaseTabBarController: UITabBarController,
                                    SetLayoutable,
                                    AddViewable {
-    private let stroke = UIView().then { _ in
-//        $0.backgroundColor = .GrayScale.gray30
+    private let stroke = UIView().then {
+        $0.backgroundColor = .white
+        $0.addTopBorder(with: .GrayScale.gray100, andWidth: 1)
     }
     private let impactFeedbackGenerator = UIImpactFeedbackGenerator(style: .light)
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-//        self.tabBar.tintColor = .GrayScale.gray90
-//        self.tabBar.unselectedItemTintColor = .GrayScale.gray50
-//        self.tabBar.backgroundColor = .GrayScale.gray10
         self.delegate = self
-
+        self.tabBar.isTranslucent = false
         addView()
         setLayout()
     }
@@ -30,7 +28,7 @@ public class BaseTabBarController: UITabBarController,
         stroke.snp.makeConstraints {
             $0.top.equalToSuperview().offset(-1)
             $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(1)
+            $0.height.equalTo(16)
         }
     }
 

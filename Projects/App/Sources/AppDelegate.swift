@@ -5,7 +5,6 @@ import Then
 import Presentation
 import Domain
 import Core
-import DesignSystem
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {

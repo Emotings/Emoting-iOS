@@ -6,6 +6,7 @@ import Domain
 public final class PresentationAssembly: Assembly {
     public init() {}
 
+    // swiftlint: disable function_body_length
     public func assemble(container: Container) {
         container.register(OnboardingReactor.self) { _ in
             OnboardingReactor()
@@ -62,5 +63,34 @@ public final class PresentationAssembly: Assembly {
         container.register(ProfilSignupViewController.self) { resolver in
             ProfilSignupViewController(resolver.resolve(ProfilSignupReactor.self)!)
         }
+
+        container.register(ChatReactor.self) { _ in
+            ChatReactor()
+        }
+        container.register(ChatViewController.self) { resolver in
+            ChatViewController(resolver.resolve(ChatReactor.self)!)
+        }
+
+        container.register(FriendsReactor.self) { _ in
+            FriendsReactor()
+        }
+        container.register(FriendsViewController.self) { resolver in
+            FriendsViewController(resolver.resolve(FriendsReactor.self)!)
+        }
+
+        container.register(StoreReactor.self) { _ in
+            StoreReactor()
+        }
+        container.register(StoreViewController.self) { resolver in
+            StoreViewController(resolver.resolve(StoreReactor.self)!)
+        }
+
+        container.register(MyPageReactor.self) { _ in
+            MyPageReactor()
+        }
+        container.register(MyPageViewController.self) { resolver in
+            MyPageViewController(resolver.resolve(MyPageReactor.self)!)
+        }
+        // swiftlint: enable function_body_length
     }
 }

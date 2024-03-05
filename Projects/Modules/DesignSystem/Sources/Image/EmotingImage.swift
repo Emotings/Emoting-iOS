@@ -12,6 +12,10 @@ public enum EmotingImage {
     case kakao
     case naver
     case google
+    case chat
+    case humanPlus
+    case store
+    case userProfile
 }
 
 extension EmotingImage {
@@ -29,6 +33,18 @@ extension EmotingImage {
 
         case .google:
             return dsImages.google.image
+
+        case .chat:
+            return dsImages.chat.image
+
+        case .humanPlus:
+            return dsImages.humanPlus.image
+
+        case .store:
+            return dsImages.store.image
+
+        case .userProfile:
+            return dsImages.userProfile.image
         }
     }
 }
