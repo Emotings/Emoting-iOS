@@ -22,13 +22,13 @@ public final class StoreFlow: Flow {
         guard let step = step as? StoreStep else { return .none }
         switch step {
         case .storeIsRequired:
-            return presentStore()
+            return navigateToStore()
         }
     }
 }
 
 extension StoreFlow {
-    private func presentStore() -> FlowContributors {
+    private func navigateToStore() -> FlowContributors {
         let storeViewController = container.resolve(StoreViewController.self)!
         self.rootViewController.pushViewController(storeViewController, animated: false)
         return .one(flowContributor: .contribute(

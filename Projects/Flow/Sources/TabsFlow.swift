@@ -22,13 +22,13 @@ public final class TabsFlow: Flow {
         guard let step = step as? AppStep else { return .none }
         switch step {
         case .tabIsRequired:
-            return presentTabs()
+            return navigateToTabs()
         default:
             return .none
         }
     }
     // swiftlint: disable function_body_length
-    private func presentTabs() -> FlowContributors {
+    private func navigateToTabs() -> FlowContributors {
         let chatFlow = ChatFlow(container: container)
         let friendsFlow = FriendsFlow(container: container)
         let storeFlow = StoreFlow(container: container)

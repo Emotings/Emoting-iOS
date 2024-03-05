@@ -22,13 +22,13 @@ public final class FriendsFlow: Flow {
         guard let step = step as? FriendsStep else { return .none }
         switch step {
         case .friendsIsRequired:
-            return presentFriends()
+            return navigateToFriends()
         }
     }
 }
 
 extension FriendsFlow {
-    private func presentFriends() -> FlowContributors {
+    private func navigateToFriends() -> FlowContributors {
         let friendsViewController = container.resolve(FriendsViewController.self)!
         self.rootViewController.pushViewController(friendsViewController, animated: false)
         return .one(flowContributor: .contribute(

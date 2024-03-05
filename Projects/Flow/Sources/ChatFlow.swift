@@ -22,13 +22,13 @@ public final class ChatFlow: Flow {
         guard let step = step as? ChatStep else { return .none }
         switch step {
         case .chatIsRequired:
-            return presentChat()
+            return navigateToChat()
         }
     }
 }
 
 extension ChatFlow {
-    private func presentChat() -> FlowContributors {
+    private func navigateToChat() -> FlowContributors {
         let chatViewController = container.resolve(ChatViewController.self)!
         self.rootViewController.pushViewController(chatViewController, animated: false)
         return .one(flowContributor: .contribute(
