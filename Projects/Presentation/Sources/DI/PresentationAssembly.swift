@@ -71,6 +71,13 @@ public final class PresentationAssembly: Assembly {
             ChatViewController(resolver.resolve(ChatReactor.self)!)
         }
 
+        container.register(ChatRoomReactor.self) { _ in
+            ChatRoomReactor()
+        }
+        container.register(ChatRoomViewController.self) { resolver in
+            ChatRoomViewController(resolver.resolve(ChatRoomReactor.self)!)
+        }
+
         container.register(FriendsReactor.self) { _ in
             FriendsReactor()
         }
