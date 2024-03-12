@@ -16,6 +16,7 @@ public enum EmotingImage {
     case humanPlus
     case store
     case userProfile
+    case sendFill
 }
 
 extension EmotingImage {
@@ -45,6 +46,9 @@ extension EmotingImage {
 
         case .userProfile:
             return dsImages.userProfile.image
+
+        case .sendFill:
+            return dsImages.sendFill.image
         }
     }
 }

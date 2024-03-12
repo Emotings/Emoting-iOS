@@ -15,6 +15,7 @@ public enum EmotingFontSize {
     case regular
     case semibold
     case extrabold
+    case medium
 }
 
 extension EmotingFontSize {
@@ -27,6 +28,8 @@ extension EmotingFontSize {
             return pretendard.semiBold.font(size: size)
         case .extrabold:
             return pretendard.extraBold.font(size: size)
+        case .medium:
+            return pretendard.medium.font(size: size)
         }
     }
 }
