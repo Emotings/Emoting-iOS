@@ -27,6 +27,8 @@ public final class AppFlow: Flow {
             return navigationToOauthLogin()
         case .tabIsRequired:
             return navigationToTab()
+        case .testIsRequired:
+            return navigateToTest()
         }
     }
 }
@@ -77,5 +79,18 @@ private extension AppFlow {
             withNextStepper: OneStepper(withSingleStep: AppStep.tabIsRequired)
             )
         )
+    }
+    func navigateToTest() -> FlowContributors {
+        let testFlow = TestFlow(container: container)
+        Flows.use(
+            testFlow,
+            when: .created
+        ) { [weak self] root in
+                self?.window.rootViewController = root
+        }
+        return .one(flowContributor: .contribute(
+            withNextPresentable: testFlow,
+            withNextStepper: OneStepper(withSingleStep: AppStep.testIsRequired)
+        ))
     }
 }

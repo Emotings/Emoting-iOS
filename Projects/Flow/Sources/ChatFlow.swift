@@ -23,6 +23,8 @@ public final class ChatFlow: Flow {
         switch step {
         case .chatIsRequired:
             return navigateToChat()
+        case .chatRoomIsRequired:
+            return navigateToChatRoom()
         }
     }
 }
@@ -34,6 +36,14 @@ extension ChatFlow {
         return .one(flowContributor: .contribute(
             withNextPresentable: chatViewController,
             withNextStepper: chatViewController.reactor
+        ))
+    }
+    private func navigateToChatRoom() -> FlowContributors {
+        let chatRoomViewController = container.resolve(ChatRoomViewController.self)!
+        self.rootViewController.pushViewController(chatRoomViewController, animated: true)
+        return .one(flowContributor: .contribute(
+            withNextPresentable: chatRoomViewController,
+            withNextStepper: chatRoomViewController.reactor
         ))
     }
 }
