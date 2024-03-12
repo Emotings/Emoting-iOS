@@ -19,6 +19,7 @@ public class BaseNavigationController: UINavigationController {
     private var backButtonImage: UIImage? {
         return UIImage(systemName: "chevron.left")!
             .withAlignmentRectInsets(UIEdgeInsets(top: 16.0, left: -16.0, bottom: 16.0, right: 0.0))
+            .withTintColor(.GrayScale.gray500, renderingMode: .alwaysOriginal)
     }
 
     private var backButtonAppearance: UIBarButtonItemAppearance {
@@ -30,7 +31,7 @@ public class BaseNavigationController: UINavigationController {
     private func setNavigationBarAppearance() {
         let scrollEdgeAppearance = UINavigationBarAppearance()
         let standardAppearance = UINavigationBarAppearance()
-        navigationBar.tintColor = .GrayScale.gray500
+        navigationBar.tintColor = .white
         scrollEdgeAppearance.setBackIndicatorImage(
             backButtonImage,
             transitionMaskImage: backButtonImage
@@ -39,6 +40,12 @@ public class BaseNavigationController: UINavigationController {
             backButtonImage,
             transitionMaskImage: backButtonImage
         )
+        scrollEdgeAppearance.titleTextAttributes = [
+            .font: UIFont.pretendardFont(.regular, size: 16)
+        ]
+        standardAppearance.titleTextAttributes = [
+            .font: UIFont.pretendardFont(.regular, size: 16)
+        ]
         scrollEdgeAppearance.backgroundColor = .white
 
         scrollEdgeAppearance.configureWithTransparentBackground()
@@ -48,10 +55,6 @@ public class BaseNavigationController: UINavigationController {
         scrollEdgeAppearance.titleTextAttributes = [
             .font: UIFont.pretendardFont(.regular, size: 16)
         ]
-//        scrollEdgeAppearance.largeTitleTextAttributes = [
-//            .font: UIFont.jobisFont(.pageTitle),
-//            .foregroundColor: UIColor.GrayScale.gray90
-//        ]
         navigationBar.standardAppearance = standardAppearance
         navigationController?.setNeedsStatusBarAppearanceUpdate()
         navigationBar.scrollEdgeAppearance = scrollEdgeAppearance

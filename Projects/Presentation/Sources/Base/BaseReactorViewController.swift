@@ -42,7 +42,7 @@ public class BaseReactorViewController<Reactor: BaseReactor>: UIViewController,
         bindAction()
         bindState()
         configureViewController()
-        configureNavigation()
+//        configureNavigation()
 
         self.viewDidLoadPublisher.accept(())
     }
@@ -50,6 +50,8 @@ public class BaseReactorViewController<Reactor: BaseReactor>: UIViewController,
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewWillAppearPublisher.accept(())
+        self.navigationController?.navigationBar.isHidden = true
+        configureNavigation()
     }
 
     public override func viewDidAppear(_ animated: Bool) {
