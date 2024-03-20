@@ -5,7 +5,6 @@ import Domain
 public final class UseCaseAssembly: Assembly {
     public init() {}
 
-// swiftlint:disable function_body_length
     public func assemble(container: Container) {
         // Auth
         container.register(LoginUseCase.self) { resolver in
@@ -19,5 +18,4 @@ public final class UseCaseAssembly: Assembly {
             )
         }
     }
-    // swiftlint:enable function_body_length
 }
