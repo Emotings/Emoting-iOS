@@ -2,6 +2,8 @@ import UIKit
 import SnapKit
 import Then
 import DesignSystem
+import RxSwift
+import RxCocoa
 
 public class EmailLoginViewController: BaseReactorViewController<EmailLoginReactor> {
     private let titleLabel = UILabel().then {
@@ -24,9 +26,28 @@ public class EmailLoginViewController: BaseReactorViewController<EmailLoginReact
         $0.titleLabel?.font = .pretendardFont(.semibold, size: 18)
     }
 
-    public override func configureNavigation() {
-        self.navigationItem.hidesBackButton = true
+    public override func bindAction() {
+        emailTextField.rx.text.orEmpty.asDriver()
+            .distinctUntilChanged()
+            .map { EmailLoginReactor.Action.updateEmail($0) }
+            .drive(reactor.action)
+            .disposed(by: disposeBag)
+
+        passwordTextField.rx.text.orEmpty.asDriver()
+            .distinctUntilChanged()
+            .map { EmailLoginReactor.Action.updatePassword($0) }
+            .drive(reactor.action)
+            .disposed(by: disposeBag)
+
+        loginButton.rx.tap.asObservable()
+            .map { EmailLoginReactor.Action.loginButtonDidTap }
+            .bind(to: reactor.action)
+            .disposed(by: disposeBag)
     }
+
+    public override func bindState() {}
+
+    public override func configureNavigation() {}
 
     public override func addView() {
         [
