@@ -35,7 +35,7 @@ extension OauthLoginReactor {
     }
 
     public func reduce(state: State, mutation: Mutation) -> State {
-        var newState = state
+        let newState = state
         switch mutation {
         case .navigateToEmailLogin:
             steps.accept(OauthLoginStep.emailLoginisRequired)

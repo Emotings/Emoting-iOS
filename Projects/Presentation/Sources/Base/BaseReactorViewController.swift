@@ -42,7 +42,7 @@ public class BaseReactorViewController<Reactor: BaseReactor>: UIViewController,
         bindAction()
         bindState()
         configureViewController()
-//        configureNavigation()
+        configureNavigation()
 
         self.viewDidLoadPublisher.accept(())
     }

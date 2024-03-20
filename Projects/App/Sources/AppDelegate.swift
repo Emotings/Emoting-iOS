@@ -19,7 +19,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
         assembler = Assembler([
             KeychainAssembly(),
-            PresentationAssembly()
+            PresentationAssembly(),
+            DataSourceAssembly(),
+            RepositoryAssembly(),
+            UseCaseAssembly()
         ], container: AppDelegate.container)
         return true
     }

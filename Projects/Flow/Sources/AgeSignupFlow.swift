@@ -51,8 +51,8 @@ private extension AgeSignupFlow {
         }
 
         return .one(flowContributor: .contribute(
-            withNextPresentable: rootViewController,
-            withNextStepper: rootViewController.reactor
+            withNextPresentable: profilSignupFlow,
+            withNextStepper: OneStepper(withSingleStep: ProfilSignupStep.profilSignupIsRequired)
         ))
     }
 }
