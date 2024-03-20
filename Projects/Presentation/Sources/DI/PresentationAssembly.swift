@@ -22,8 +22,8 @@ public final class PresentationAssembly: Assembly {
             OauthLoginViewController(resolver.resolve(OauthLoginReactor.self)!)
         }
 
-        container.register(EmailLoginReactor.self) { _ in
-            EmailLoginReactor()
+        container.register(EmailLoginReactor.self) { resolver in
+            EmailLoginReactor(loginUseCase: resolver.resolve(LoginUseCase.self)!)
         }
         container.register(EmailLoginViewController.self) { resolver in
             EmailLoginViewController(resolver.resolve(EmailLoginReactor.self)!)
