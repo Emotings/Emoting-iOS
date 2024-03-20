@@ -29,7 +29,7 @@ public final class OauthLoginFlow: Flow {
         case .emailSignupIsRequired:
             return navigationToEmailSignup()
         case .tabIsRequired:
-            return .end(forwardToParentFlowWithStep: OnboardingStep.tabIsRequired)
+            return .end(forwardToParentFlowWithStep: AppStep.tabIsRequired)
         }
     }
 }
@@ -50,16 +50,15 @@ private extension OauthLoginFlow {
     }
 
     func navigationToEmailLogin() -> FlowContributors {
-        let emailLoginViewController = container.resolve(EmailLoginViewController.self)!
+        let emailLoginFlow = EmailLoginFlow(container: container)
 
-        self.rootViewController.pushViewController(
-            emailLoginViewController,
-            animated: true
-        )
+        Flows.use(emailLoginFlow, when: .created) { (root) in
+            self.rootViewController.pushViewController(root, animated: true)
+        }
 
         return .one(flowContributor: .contribute(
-            withNextPresentable: emailLoginViewController,
-            withNextStepper: emailLoginViewController.reactor
+            withNextPresentable: emailLoginFlow,
+            withNextStepper: OneStepper(withSingleStep: EmailLoginStep.emailLoginisRequired)
         ))
     }
 

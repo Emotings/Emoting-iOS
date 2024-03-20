@@ -26,7 +26,7 @@ public final class ProFilSignupFlow: Flow {
             return navigationToProfilSignup()
 
         case .oauthLoginIsRequired:
-            return .end(forwardToParentFlowWithStep: AgeSignupStep.oauthLoginIsRequired)
+            return navigationToOauthLogin()
         }
     }
 }
@@ -37,5 +37,10 @@ private extension ProFilSignupFlow {
             withNextPresentable: rootViewController,
             withNextStepper: rootViewController.reactor
         ))
+    }
+
+    func navigationToOauthLogin() -> FlowContributors {
+        self.rootViewController.navigationController?.popToRootViewController(animated: true)
+        return .end(forwardToParentFlowWithStep: AgeSignupStep.oauthLoginIsRequired)
     }
 }
